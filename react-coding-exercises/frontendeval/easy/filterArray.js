@@ -9,5 +9,6 @@ function filter(array, callback){
 }
 
 // Filter example
+const myArray = [1, 2, 3, 4, 5];
 const filteredArray = filter(myArray, (x) => x % 2 === 0);
 console.log("Filtered Array:", filteredArray);
