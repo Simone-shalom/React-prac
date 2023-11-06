@@ -1,6 +1,5 @@
-
 // Dependencies
-import React, {useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 // Styles
@@ -12,13 +11,15 @@ const App = () => {
   const [date, setDate] = useState("");
   const [password, setPassword] = useState("");
   const [step, setStep] = useState(1);
-  const [missing, setMissing] = useState(false)
+  const [missing, setMissing] = useState(false);
+  const [survay, setSurvay] = useState(false);
 
   const onSubmit = () => {
-    if(!name || !email || !date || !password ){
-      setMissing(true)
+    if (!name || !email || !date || !password) {
+      setMissing(true);
+      return;
     }
-    setMissing(false)
+    setMissing(false);
     console.log("form submited");
     console.log(name, email, date, password);
   };
@@ -29,6 +30,19 @@ const App = () => {
 
   const onBack = () => {
     setStep((prev) => prev - 1);
+  };
+
+  const onGmailCheckOnNext = () => {
+    if (email.includes("@gmail.com")) {
+      setSurvay(true);
+    } else {
+      setStep((prev) => prev + 1);
+    }
+  };
+
+  const onHideSurvay = () => {
+    setSurvay(false);
+    setStep((prev) => prev + 1);
   };
 
   return (
@@ -48,7 +62,7 @@ const App = () => {
         //Email modal
         <Modal
           name="Email"
-          onClick={onNext}
+          onClick={onGmailCheckOnNext}
           onBack={onBack}
           btnAction="next"
           value={email}
@@ -80,10 +94,40 @@ const App = () => {
           type="password"
         />
       )}
-      {missing && (
-        <div className='text-red-600 font-bold text-xl'>
-          Missing fields, go back
+
+      {survay && (
+        <div className="z-10 flex flex-col items-center justify-center absolute inset-0 bg-white h-full">
+          <h1 className="text-2xl font-bold"> Survay</h1>
+          <h3 className="font-semibold">Why u use gmail {name}??</h3>
+          <div>
+            <div className="flex space-x-2">
+              <input type="checkbox" />
+              <p>Cause</p>
+            </div>
+            <div className="flex space-x-2">
+              <input type="checkbox" />
+              <p>Why not</p>
+            </div>
+            <div className="flex space-x-2">
+              <input type="checkbox" />
+              <p>Yassir</p>
+            </div>
           </div>
+
+          <div className="flex items-center justify-center">
+            <button
+              onClick={onHideSurvay}
+              className="border-2 capitalize text-lg font-semibold border-black w-20 mt-3"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+      {missing && (
+        <div className="text-red-600 font-bold text-xl">
+          Missing fields, go back
+        </div>
       )}
     </div>
   );
@@ -96,7 +140,7 @@ const Modal = ({ name, onClick, btnAction, onBack, value, onChange, type }) => {
     <div className="p-5 px-10 items-center justify-center flex">
       <div className="flex flex-col">
         {onBack && (
-          <div className="fixed ">
+          <div className=" absolute ">
             <button
               onClick={onBack}
               className="text-lg flex space-x-2 items-center focus:outline-none font-semibold text-blue hover:scale-110 transition duration-300"
