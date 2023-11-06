@@ -29,26 +29,22 @@ const lights = [
 const App = () => {
 
   const [active ,setActive] = useState('red')
-  const [currentColor, setCurrentColor] = useState('red');
 
 useEffect(() => {
  
-  const currentLight = lights.find((light) => light.text === currentColor)
+  const currentLight = lights.find((light) => light.text === active)
   const interval = setInterval(()=> {
-    if(currentColor === 'red'){
+    if(active === 'red'){
       setActive('green')
-      setCurrentColor('green')
-    } else if(currentColor === 'yellow'){
+    } else if(active === 'yellow'){
       setActive('red')
-      setCurrentColor('red')
-    } else if(currentColor === 'green') {
-      setCurrentColor('yellow')
+    } else if(active === 'green') {
       setActive('yellow')
     }
   },currentLight.duration)
 
   return () => clearInterval(interval)
-},[currentColor])
+},[active])
 
   return <div className='p-5 flex flex-col items-center justify-center'>
     <h1 className='text-2xl font-bold text-center pb-5 '>
