@@ -13,7 +13,7 @@ const App = () => {
   const debounceSearch  = useDebounce(search, 500)
 
   const filteredProducts = products.filter((prd) => prd.toLowerCase()
-  .includes(debounceSearch))
+  .includes(debounceSearch.toLowerCase()))
 
   return (
     <div className="mx-auto flex flex-col items-center h-screen">
