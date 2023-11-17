@@ -23,4 +23,24 @@ function convert12to24(time12h) {
   const time24h = convert12to24(time12h);
   console.log(time24h); // Output: "17:23"
   
+//my convert time
+  function convertTime(timein12h){
 
+    const [time, timeSplit] = timein12h.split(' ')
+    const [hours, minutes] = time.split(':')
+  
+    if(timeSplit === 'PM'){
+      const hoursInt = parseInt(hours, 10) 
+  
+      const convertedHour = hoursInt  +12
+  
+      const convertedTime = `${convertedHour}:${minutes}`
+  
+      return convertedTime
+    } else {
+      return time
+    }
+  
+  }
+  
+  console.log(convertTime('04:03 PM'))
