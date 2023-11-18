@@ -10,10 +10,8 @@ const App = () => {
 
   // Define a dynamic background gradient based on the percentage
   const circleStyle = {
-    background: `conic-gradient(
-      transparent ${value}%, 
-      rgba(144, 238, 144, 0.8) ${value}%
-    )`,
+    background: `conic-gradient( rgba(13, 242, 155) ${value}%, rgba(211, 222, 135) ${value}% 
+    )`
   };
 
   return (
