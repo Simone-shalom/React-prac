@@ -1,5 +1,6 @@
 
 function funnyNumber(array){
+    // O(n) notation time
     for(let i =0; i<array.length; i++){
       if(i===3){
         return array[i]
@@ -8,6 +9,7 @@ function funnyNumber(array){
   }
   
   const funnyNumber2 =(array)=> {
+    // O(1) notaion time
     return array[3]
   }
   
