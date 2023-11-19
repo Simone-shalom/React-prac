@@ -22,3 +22,8 @@ function funnyNumber(array){
   console.log(funnyNumber2([1,2,34,5]))
   console.timeEnd('funnyNumber2')
   
+
+
+  // O(1) > O(n) > O(n^2) > ....
+  // 
+  //opt to use simpler notations
