@@ -25,3 +25,24 @@ function hammingDistance(x, y ){
     return distance
   }
   console.log(hammingDistance('subscribe','described'))
+
+
+  // hammmed simple
+function hammingDistance2(x, y){
+    if(x.length !== y.length){
+      console.log('Strings must be same length')
+      return
+    }
+  
+    let distance = 0
+  
+    for(let i=0; i<x.length; i++){
+      if(x[i] !==y[i]){
+        distance ++
+      }
+    }
+    return distance
+  }
+  
+  
+  console.log(hammingDistance2('subscribe', 'sutecribe'))
