@@ -35,3 +35,14 @@ function searchG(array, target){
    }
    
    console.log(searchG([1,5,2,6,8,6,3,6],6))
+
+   //search with find method
+
+function searchF(array, target){
+
+    const result = array.find((arr) => arr=== target)
+  
+    return array.indexOf(result)
+  }
+  
+  console.log(searchF([1,4,5,6,7],6))
