@@ -12,12 +12,12 @@ const App = () => {
   const [currency2, setCurrency2] = useState('eur')
   const [amount2, setAmount2] = useState(1)
 
-  const onCurrencyChange=(e)=> {
-    setCurrency(e.target.value)
-  } 
-  const onCurrencyChange2=(e)=> {
-    setCurrency2(e.target.value)
-  } 
+  // const onCurrencyChange=(e)=> {
+  //   setCurrency(e.target.value)
+  // } 
+  // const onCurrencyChange2=(e)=> {
+  //   setCurrency2(e.target.value)
+  // } 
 
   const onChangeAmount =(e) => {
     setAmount(e.target.value)
@@ -26,7 +26,6 @@ const App = () => {
   const onChangeAmount2 =(e) => {
     setAmount2(e.target.value)
   }
-
 
   
   return (
@@ -37,12 +36,13 @@ const App = () => {
       <div className='flex flex-col space-y-3'>
       <Currency curr={currency} amount={amount} 
         onChangeAmount={onChangeAmount}
-        onCurrencyChange={onCurrencyChange}
-        currencies={['USD','EUR']}/>
+        currencies={['USD','EUR']} />
+        {/* onCurrencyChange={onCurrencyChange} */}
       <Currency curr={currency2} amount={amount2} 
         onChangeAmount={onChangeAmount2}
-        onCurrencyChange={onCurrencyChange2}
         currencies={['USD','EUR']}/>
+        {/* onCurrencyChange={onCurrencyChange} */}
+
       </div>
      
     </div>
@@ -51,18 +51,29 @@ const App = () => {
 
 export default App;
 
-
-export const Currency =({curr, amount, onChangeAmount, onCurrencyChange, currencies}) => {
-  return (
-    <div className='flex flex-col items-center justify-center'>
-      <div className='flex space-x-1'>
-        <Input value={amount} onChange={onChangeAmount} type='number'/>
-        <Select value={curr} onChange={onCurrencyChange} currencies={currencies}/>
-      </div>
-
-      </div>
-  )
-}
+export const Currency =({curr, amount, onChangeAmount, currencies}) => {
+  
+    const [convertedAmount, setConvertedAmount] = useState(0);
+  
+  
+   const fixedRates = {
+      USD: 1,
+      EUR: 0.85, 
+    };
+  
+    
+  
+    return (
+      <div className='flex flex-col items-center justify-center'>
+        <div className='flex space-x-1'>
+          <Input value={amount} onChange={onChangeAmount} type='number'/>
+          <Select value={curr}  currencies={currencies}/>
+        </div>
+  
+        </div>
+    )
+  }
+  
 
 export const Input = ({value, onChange, type}) => {
   return (
@@ -72,11 +83,12 @@ export const Input = ({value, onChange, type}) => {
 }
 export const Select = ({value, onChange, currencies}) => {
   return (
-   <select value={value}  onChange={onChange}
+   <div value={value}  onChange={onChange}
    className='focus:outline-none border border-black px-5 text-lg font-bold'>
-    {currencies.map((curr) => (
+    {/* {currencies.map((curr) => (
       <option value={curr} key={curr}>{curr} </option>
-    ))}
-    </select>
+    ))} */}
+    {value}
+    </div>
   )
 }
