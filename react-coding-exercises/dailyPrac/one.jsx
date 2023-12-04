@@ -92,3 +92,61 @@ export const Product =({prd}) => {
       </div>
   )
 }
+
+// Game 
+// Dependencies
+import React, { useState } from "react";
+
+// Styles
+import "./tailwind.output.css";
+
+export const App3 = () => {
+  const options = ["cricket", "football", "hockey"];
+  const days = ["weekends", "weekdays"];
+
+  const [option, setOption] = useState("");
+  const [day, setDay] = useState("");
+
+  return (
+    <div className="min-h-screen px-10 flex items-center flex-col">
+      <h2 className="text-center text-4xl font-bold pb-20 ">Play a game</h2>
+      <div className="flex flex-col space-y-10">
+        {/* Selecting Game  */}
+        <div className="flex flex-col">
+          <h1>Select a Game </h1>
+          <SelectComp value={option} array={options} onChange={setOption} />
+        </div>
+
+        {/* Selecting Day  */}
+        <div className="flex flex-col">
+          <h1>Select a Day </h1>
+          <SelectComp value={day} array={days} onChange={setDay} />
+        </div>
+      </div>
+      {day && (
+        <p className="font-bold pt-10">
+        You have choosen to play {option} on {day}
+      </p>
+      )}
+    </div>
+  );
+};
+
+
+export const SelectComp = ({ value, onChange, array }) => {
+  return (
+    <div>
+      {array.map((item) => (
+        <div key={item} className="flex space-x-1 w-20">
+          <input
+            type="radio"
+            value={value}
+            checked={value === item}
+            onChange={() => onChange(item)}
+          />
+          <p className="text-lg font-semibold">{item}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
